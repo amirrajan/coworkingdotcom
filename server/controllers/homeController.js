@@ -15,6 +15,8 @@ var definition = {
   authpost: { }
 };
 
+console.log(process.env);
+
 ///////
 //views
 ///////
@@ -99,7 +101,8 @@ definition.authpost['/city'] = function (req, res) {
       id: uuid.v1(),
       audit: {
         type: "cityentry",
-        by: req.user
+        by: req.user,
+        date: new Date()
       },
       details: req.body
     });
@@ -111,7 +114,7 @@ definition.authpost['/city'] = function (req, res) {
 };
 
 definition.authpost['/location'] = function (req, res) {
-  var googleMapsKey = env.googleMapsApiKey;
+  var googleMapsApiKey = env.googleMapsApiKey;
   var latLongUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(req.body.address) + "&sensor=false&api_key=" + googleMapsApiKey;
 
   httpRequest(latLongUrl, function(err, response, data) {
@@ -130,7 +133,8 @@ definition.authpost['/location'] = function (req, res) {
       id: uuid.v1(),
       audit: {
         type: "locationentry",
-        by: req.user
+        by: req.user,
+        date: new Date()
       },
       details: req.body
     });
