@@ -25,7 +25,9 @@ var isMasterAccount = function(user) {
 //views
 ///////
 definition.get['/'] = function(req, res) {
-  res.render('index', { u: _, user: req.user });
+  cities.getall(function(err, data) {
+    res.render('index', { u: _, user: req.user, cities: data });
+  });
 };
 
 definition.get['/logout'] = function(req, res){
@@ -56,6 +58,15 @@ definition.authget['/viewhistory'] = function(req, res) {
 definition.authget['/cities'] = function(req, res) {
   cities.getall(function(err, data) {
     res.json(data || { });
+  });
+};
+
+definition.get['/accessdenied'] = function(req, res) {
+  cities.getall(function(err, data) {
+    res.render('accessdenied', {
+      user: req.user,
+      masterAccount: env.twitterMasterAccount
+    });
   });
 };
 

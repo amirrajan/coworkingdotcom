@@ -4,9 +4,10 @@
     <hr />
     <% if(isMasterAccount) { %>
       <div class="row">
-        <div class="columns large-4"><input type="text" placeholder="city" ng-model="city"></div>
-        <div class="columns large-4"><input type="text" placeholder="state" ng-model="state"></div>
-        <div class="columns large-4"><input type="text" placeholder="country" ng-model="country"></div>
+        <div class="columns large-6"><input type="text" placeholder="city" ng-model="city"></div>
+        <div class="columns large-6"><input type="text" placeholder="state" ng-model="state"></div>
+        <div class="columns large-6"><input type="text" placeholder="country" ng-model="country"></div>
+        <div class="columns large-6"><input type="text" placeholder="coordinator" ng-model="coordinator"></div>
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
         <a href="#" class="button small large-12 columns" ng-click="addCity()">add city</a>
@@ -46,10 +47,12 @@
             city: $scope.city,
             state: $scope.state,
             country: $scope.country,
+            coordinator: $scope.coordinator
           }).success(function(data) {
             $scope.city = "";
             $scope.state = "";
             $scope.country = "";
+            $scope.coordinator = "";
             getCities();
           });
         };

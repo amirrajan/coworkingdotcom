@@ -32,7 +32,7 @@ var hasAccess = function(user) {
 
 var authorized = function(req, res, next) {
   if(!hasAccess(req.user)) {
-    res.send(403);
+    res.redirect('/accessdenied');
   } else {
     next();
   }
@@ -60,7 +60,7 @@ var refreshAccessList = function() {
 
 refreshAccessList();
 
-setInterval(function() { refreshAccessList(); }, 1000 * 60); //refresh access list every minute
+setInterval(function() { refreshAccessList(); }, 5000 * 60); //refresh access list every minute
 
 app.listen(process.env.PORT);
 

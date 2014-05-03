@@ -38,7 +38,7 @@
     app.filter("detailstring", function() {
       return function(entry) {
         if(entry.audit.type == "cityentry") {
-          return entry.details.city + ", " + (entry.details.state || "(none)") + ", " + (entry.details.country || "(none)");
+          return entry.details.city + ", " + (entry.details.state || "(none)") + ", " + (entry.details.country || "(none)") + ", " + (entry.details.coordinator || "(none)");
         } else {
           return entry.details.name + ", " + (entry.details.address || "(none)") + ", " + (entry.details.url || "(none)");
         }
@@ -48,7 +48,7 @@
     app.controller("AppCtrl", function($scope, $http) {
         var getAll = function(id) {
           $http.get("/history").success(function(data) {
-            $scope.history = _.sortBy(data, function(e) { return e.audit.date || "Z"; });
+            $scope.history = _.sortBy(data, function(e) { return -1 * new Date(e.audit.date).getTime(); });
           });
         };
 
