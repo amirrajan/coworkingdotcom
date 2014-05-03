@@ -12,6 +12,8 @@
       a better way to work.
     </p>
 
+    <p>If your cowork location isn't represented, reach out to any of our <a href="#coordinators">coordinators</a>, and they'll get the ball rolling.</p>
+
     <div class="columns" ng-repeat="city in all" style="margin-bottom: 25px; padding-top: 5px; padding-bottom: 5px; padding-left: 10px; border-left: solid 1px silver;">
       <span style="font-size: 25px">{{city | citystring}}</span>
       <a class="button small" ng-click="viewMap(city)" style="float: right; margin-bottom: 10px; padding: 10px" href="#">view map</a>
@@ -22,7 +24,23 @@
         {{loc.address}}
       </div>
     </div>
+
+    <a href="#" id="coordinators"> </a>
+    <h2>Our Coordinators</h2>
+    <hr/>
+    <div class="columns" ng-repeat="coordinator in coordinators | orderBy:random" style="margin-bottom: 25px;">
+      <img style="border: solid 1px silver; padding: 3px; float: right; width: 75px; height: 75px; margin-left: 20px;" src="{{coordinator.profile_image_url}}" />
+      <div style="font-size: 20px">
+        <span style="font-weight: bold">
+          {{coordinator.name}} - <a href="http://twitter.com/{{coordinator.screen_name}}" target="_blank">@{{coordinator.screen_name}}</a><br/>
+        </span>
+        <br/>
+        {{coordinator.description}}<br/>
+      </div>
+      <hr />
+    </div>
   </div>
+
 
   <script>
     function drawMap(locations) {
@@ -88,8 +106,8 @@
     });
 
     app.controller("AppCtrl", function($scope, $http) {
-        $scope.random = function(loc){
-            return loc.order;
+        $scope.random = function(entity){
+            return entity.order;
         };
 
         var getAll = function(id) {
@@ -104,6 +122,16 @@
           });
         };
 
+        var getCoordinators = function() {
+          $http.get("/coordinators").success(function(data) {
+            _.each(data.users, function(u) {
+              u.order = Math.random();
+            });
+
+            $scope.coordinators = data.users;
+          });
+        };
+
         $scope.viewMap = function(city) {
           $("#map").html('');
           $('#mapmodal').foundation('reveal', 'open');
@@ -113,6 +141,7 @@
         };
 
         getAll();
+        getCoordinators();
     });
   </script>
 
@@ -120,4 +149,5 @@
     <div id="map" style="margin: 30px; width: 90%; height: 430px;"></div>
     <a class="close-reveal-modal">&#215;</a>
   </div>
+
 <% include footer %>
