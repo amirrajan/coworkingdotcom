@@ -41,7 +41,7 @@ Set up the application with the following settings. Anywhere you see coworking.c
 
 <img src="twitter-app-settings.png" />
 
-*Note: "Allow this application to be used to Sign in with Twitter" should be **unchecked**.*
+*Note: "Allow this application to be used to Sign in with Twitter" should be unchecked.*
 
 Set up a Google Maps Api Key.
 
@@ -52,7 +52,7 @@ Set up a Google Maps Api Key.
 5. Click API Access on the left hand navigation bar.
 6. Click Create new Browser key (you can limit referrers if needed).
 
-Once your Twitter account, and Google API key set up. You can test the site locally.
+Once your Twitter, and Google Maps API keys are set up. You can test the site locally.
 
 Create a `.env` file and set the following values:
 
