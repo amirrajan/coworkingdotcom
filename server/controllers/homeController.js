@@ -97,7 +97,9 @@ definition.get['/city'] = function (req, res) {
 
 definition.get['/history'] = function(req, res) {
   history.getall(function(err, allHistory) {
-    res.json(allHistory || { });
+    res.json(_.sortBy(allHistory || { }, function(h) { 
+      return -1 * new Date(h.audit.date).getTime();
+    }));
   });
 };
 
@@ -137,6 +139,30 @@ definition.post['/city'] = function (req, res) {
   }
 };
 
+definition.post['/deletecity'] = function(req, res) {
+  if(!isMasterAccount(req.user)) {
+    res.send(403);
+  } else if(!req.body.city && !req.body.country) {
+    res.json({ });
+  } else {
+    req.body.id = req.body.id || uuid.v1();
+
+    history.set({
+      id: uuid.v1(),
+      audit: {
+        type: "citydelete",
+        by: req.user,
+        date: new Date()
+      },
+      details: req.body
+    });
+
+    cities.del(req.body.id, function() {
+      res.json({ });
+    });
+  }
+};
+
 definition.authpost['/location'] = function (req, res) {
   var googleMapsApiKey = env.googleMapsApiKey;
   var latLongUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(req.body.address) + "&sensor=false&api_key=" + googleMapsApiKey;
@@ -166,6 +192,22 @@ definition.authpost['/location'] = function (req, res) {
     locations.set(req.body, function() {
       res.json(req.body);
     });
+  });
+};
+
+definition.authpost['/deletelocation'] = function (req, res) {
+  history.set({
+    id: uuid.v1(),
+    audit: {
+      type: "locationdelete",
+      by: req.user,
+      date: new Date()
+    },
+    details: req.body
+  });
+
+  locations.del(req.body.id, function() {
+    res.json({ });
   });
 };
 

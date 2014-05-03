@@ -11,6 +11,7 @@
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
         <a id="updateCity" href="#" class="button small large-12 columns" ng-click="updateCity()">update city</a>
+        <a id="deleteCity" href="#" class="button alert small large-12 columns" ng-click="deleteCity()">delete city</a>
       </div>
       <hr />
     <% } %>
@@ -30,7 +31,8 @@
         <div class="columns large-12"><input type="text" placeholder="website url" ng-model="location.url"></div>
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
-        <input id="{{location.id}}" class="button small large-12 columns" type="button" value="update" ng-click="updateLocation(location)"><br/>
+        <input id="{{location.id}}" class="button small large-12 columns" type="button" value="update location" ng-click="updateLocation(location)"><br/>
+        <a href="#" class="button alert small large-12 columns" ng-click="deleteLocation(location)">delete location</a>
       </div>
       <hr />
     </div>
@@ -96,6 +98,23 @@
             });
         };
 
+        $scope.deleteCity = function() {
+          var newCity = {
+            id: $scope.id,
+            city: $scope.city,
+            state: $scope.state,
+            country: $scope.country,
+            coordinator: $scope.coordinator,
+          };
+
+          $("#updateCity").html("deleting...");
+
+          $http.post("/deletecity", newCity)
+            .success(function(data) {
+                window.location = "/managecities";
+            });
+        };
+
         $scope.updateLocation = function(loc) {
           $("#" + loc.id).val("saving...");
           $http.post("/location", loc)
@@ -106,6 +125,14 @@
               setTimeout(function() { 
                 $("#" + loc.id).val("update");
               }, 2000);
+            });
+        };
+
+        $scope.deleteLocation = function(loc) {
+          $("#" + loc.id).val("saving...");
+          $http.post("/deletelocation", loc)
+            .success(function(data) {
+              getLocations(query().id);
             });
         };
 

@@ -1,13 +1,16 @@
 <% include header %>
 
-  <div class="row" ng-app="App" ng-controller="AppCtrl">
+  <div ng-app="App" ng-controller="AppCtrl">
     <h1>History</h1>
     <hr />
-    <div ng-repeat="entry in history" style="margin-bottom: 10px">
-      <img class="columns large-columns-1" src="{{entry.audit.by.avatar}}" style="margin-right: 10px; width: 50px; height: 50px; padding: 3px; border: solid 1px silver;" /> {{entry.audit.by.username}}<br/>
-      <div>{{entry | audittype}} - {{entry.audit.date || ""}}</div>
-      <div>{{entry | detailstring}}</div>
-      <hr />
+    <div class="row" ng-repeat="entry in history | orderBy:enryDate" style="padding-bottom: 10px; margin-bottom: 10px; border-bottom: solid 1px silver;">
+      <img class="columns large-2" src="{{entry.audit.by.avatar}}" style="width: 50px; height: 50px; padding: 3px; border: solid 1px silver;" /> 
+      <div class="columns large-8">
+        {{entry.audit.by.username}}<br/>
+        {{entry.audit.type}} - {{entry.audit.date || ""}}<br/>
+        {{entry | detailstring}}
+      </div>
+      <a href="#" ng-show="canUndo(entry)" ng-click="undo(entry)" class="button tiny columns large-2">undo delete</a>
     </div>
   </div>
 
@@ -25,19 +28,9 @@
 
     var app = angular.module('App', []);
 
-    app.filter("audittype", function() {
-      return function(entry) {
-        if(entry.audit.type == "cityentry") {
-          return "City Changed/Added";
-        } else {
-          return "Location Changed/Added";
-        }
-      };
-    });
-
     app.filter("detailstring", function() {
       return function(entry) {
-        if(entry.audit.type == "cityentry") {
+        if(entry.audit.type == "cityentry" || entry.audit.type == "citydelete") {
           return entry.details.city + ", " + (entry.details.state || "(none)") + ", " + (entry.details.country || "(none)") + ", " + (entry.details.coordinator || "(none)");
         } else {
           return entry.details.name + ", " + (entry.details.address || "(none)") + ", " + (entry.details.url || "(none)");
@@ -48,8 +41,22 @@
     app.controller("AppCtrl", function($scope, $http) {
         var getAll = function(id) {
           $http.get("/history").success(function(data) {
-            $scope.history = _.sortBy(data, function(e) { return -1 * new Date(e.audit.date).getTime(); });
+            $scope.history = data;
           });
+        };
+
+        $scope.canUndo = function(entry) {
+          return entry.audit.type == "citydelete" || entry.audit.type == "locationdelete";
+        };
+
+        $scope.undo = function(entry) {
+          if(entry.audit.type == "citydelete") {
+            $http.post("/city", entry.details)
+             .success(function(data) { getAll(); });
+          } else if(entry.audit.type == "locationdelete") {
+            $http.post("/location", entry.details)
+             .success(function(data) { getAll(); });
+          }
         };
 
         getAll();

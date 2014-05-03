@@ -25,6 +25,14 @@ module.exports.hget = function(collection) {
   }
 };
 
+module.exports.hdel = function(collection) {
+  return function (id, callback) {
+    client.hdel(collection, id, function(err, obj) {
+      if(callback) callback(err);
+    });
+  }
+};
+
 module.exports.hgetall = function(collection) {
   return function (callback) {
     client.hgetall(collection, function(err, obj) {
