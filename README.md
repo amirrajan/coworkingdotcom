@@ -59,9 +59,14 @@ Create a `.env` file and set the following values:
     cookieSecret=XXXXXXXXXXXXX
     twitterConsumerKey=XXXXXXXXXXXXXXXXXXXXXXXXX
     twitterConsumerSecret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    twitterAccessToken=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    twitterAccessTokenSecret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    twitterMasterAccount=AdminTwitterHandle
     twitterCallbackUrl=http://coworking.dev:3000/authenticate
     googleMapsApiKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     PORT=3000
+
+Note: the `twitterMasterAccount` is used to grant edit access to locations. Anyone that the `twitterMasterAccount` follows will have edit privaleges. Only the `twitterMasterAccount` can add cities. In the `.env` file, designate the `twitterMasterAccount` to a screenname _without_ the `@` prefix.
 
 Add the following line to `/etc/hosts`
 
@@ -106,6 +111,9 @@ Set environment variables on the server:
     heroku config:set twitterConsumerSecret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     heroku config:set twitterCallbackUrl=http://XXXXXXXXX.com/authenticate
     heroku config:set googleMapsApiKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    heroku config:set twitterAccessToken=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    heroku config:set twitterAccessTokenSecret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    heroku config:set twitterMasterAccount=AdminTwitterHandle
     heroku config:set PORT=80
 
 Open the app (same as opening it in the browser):
