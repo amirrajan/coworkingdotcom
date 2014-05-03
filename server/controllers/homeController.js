@@ -15,8 +15,6 @@ var definition = {
   authpost: { }
 };
 
-console.log(process.env);
-
 ///////
 //views
 ///////
