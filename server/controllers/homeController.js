@@ -15,6 +15,12 @@ var definition = {
   authpost: { }
 };
 
+var isMasterAccount = function(user) {
+  if(!user) return false;
+
+  return user.username == env.twitterMasterAccount;
+};
+
 ///////
 //views
 ///////
@@ -28,11 +34,19 @@ definition.get['/logout'] = function(req, res){
 };
 
 definition.authget['/managecities'] = function(req, res) {
-  res.render('managecities', { u: _, user: req.user });
+  res.render('managecities', {
+    u: _,
+    user: req.user,
+    isMasterAccount: isMasterAccount(req.user) 
+  });
 };
 
 definition.authget['/managelocations'] = function(req, res) {
-  res.render('managelocations', { u: _, user: req.user });
+  res.render('managelocations', {
+    u: _,
+    user: req.user,
+    isMasterAccount: isMasterAccount(req.user)
+  });
 };
 
 definition.authget['/viewhistory'] = function(req, res) {
@@ -85,12 +99,13 @@ definition.get['/locations'] = function(req, res) {
   });
 };
 
-
 ////////////
 //api posts
 ////////////
-definition.authpost['/city'] = function (req, res) {
-  if(!req.body.city && !req.body.country) {
+definition.post['/city'] = function (req, res) {
+  if(!isMasterAccount(req.user)) {
+    res.send(403);
+  } else if(!req.body.city && !req.body.country) {
     res.json({ });
   } else {
     req.body.id = req.body.id || uuid.v1();

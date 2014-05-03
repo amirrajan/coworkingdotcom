@@ -28,7 +28,9 @@
     "redis": "^0.10.1",
     "redis-url": "^0.2.0",
     "node-uuid": "^1.4.1",
-    "passport-twitter": "^1.0.2"
+    "passport-twitter": "^1.0.2",
+    "oauth": "^0.9.11",
+    "qs": "^0.6.6"
   },
   "devDependencies": {
     "grunt-nodemon": "~0.2.0",
