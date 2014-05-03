@@ -1,0 +1,58 @@
+<% include header %>
+  <div ng-app="App" ng-controller="AppCtrl">
+    <h1>Manage Cities</h1>
+    <hr />
+    <div class="row">
+      <div class="columns large-4"><input type="text" placeholder="city" ng-model="city"></div>
+      <div class="columns large-4"><input type="text" placeholder="state" ng-model="state"></div>
+      <div class="columns large-4"><input type="text" placeholder="country" ng-model="country"></div>
+    </div>
+    <div class="row" style="padding-left: 15px; padding-right: 15px;">
+      <a href="#" class="button small large-12 columns" ng-click="addCity()">add city</a>
+    </div>
+    <hr />
+    <div ng-repeat="city in cities" style="font-size: 25px">
+      <a class="button small" style="float: right" href="/managelocations?id={{city.id}}">edit</a> 
+      {{ city | citystring }}<br/>
+      <small style="color: gray">{{ city.id }}</small><br/>
+      <hr>
+    </div>
+  </div>
+  <script>
+    var app = angular.module('App', []);
+
+    app.filter("citystring", function() {
+      return function(city) {
+        if(city.state) {
+          return city.city + ", " + (city.state || "(none)") + ", " + city.country;
+        } else {
+          return city.city + ", " + city.country;
+        }
+      };
+    });
+
+    app.controller("AppCtrl", function($scope, $http) {
+        var getCities = function() {
+          $http.get("/cities").success(function(data) {
+            $scope.cities = data;
+            console.log(data);
+          });
+        };
+
+        $scope.addCity = function() {
+          $http.post("/city", {
+            city: $scope.city,
+            state: $scope.state,
+            country: $scope.country,
+          }).success(function(data) {
+            $scope.city = "";
+            $scope.state = "";
+            $scope.country = "";
+            getCities();
+          });
+        };
+
+        getCities();
+    });
+  </script>
+<% include footer %>

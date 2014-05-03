@@ -1,0 +1,5 @@
+*.swp
+*.swo
+.env
+.userpassword
+node_modules

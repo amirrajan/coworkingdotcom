@@ -1,0 +1,39 @@
+{
+  "name": "coworkingdotcom",
+  "version": "0.0.0",
+  "description": "coworking.com website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:amirrajan/coworkingdotcom.git"
+  },
+  "author": "Amir Rajan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amirrajan/coworkingdotcom/issues"
+  },
+  "homepage": "https://github.com/amirrajan/coworkingdotcom",
+  "dependencies": {
+    "express": "^4.1.1",
+    "ejs": "^1.0.0",
+    "underscore": "^1.6.0",
+    "passport": "^0.2.0",
+    "body-parser": "^1.0.2",
+    "cookie-parser": "^1.0.1",
+    "cookie-session": "^1.0.1",
+    "request": "^2.34.0",
+    "redis": "^0.10.1",
+    "redis-url": "^0.2.0",
+    "node-uuid": "^1.4.1",
+    "passport-twitter": "^1.0.2"
+  },
+  "devDependencies": {
+    "grunt-nodemon": "~0.2.0",
+    "grunt": "~0.4.2",
+    "grunt-env": "~0.4.1",
+    "nodemon": "~1.0.14"
+  }
+}

@@ -1,0 +1,125 @@
+<% include header %>
+  <div ng-app="App" ng-controller="AppCtrl">
+    <h1>Manage Locations</h1>
+    <hr />
+    <div class="row">
+      <div class="columns large-4"><input type="text" placeholder="city" ng-model="city"></div>
+      <div class="columns large-4"><input type="text" placeholder="state" ng-model="state"></div>
+      <div class="columns large-4"><input type="text" placeholder="country" ng-model="country"></div>
+    </div>
+    <div class="row" style="padding-left: 15px; padding-right: 15px;">
+      <a id="updateCity" href="#" class="button small large-12 columns" ng-click="updateCity()">update</a>
+    </div>
+    <hr />
+    
+    <h2>Locations</h2>
+    <hr />
+    <div class="row">
+      <div class="columns large-12"><input type="text" placeholder="cowork name" ng-model="coworkName"></div>
+    </div>
+    <div class="row" style="padding-left: 15px; padding-right: 15px;">
+      <input class="button small columns large-12" type="button" value="add location" ng-click="addLocation()">
+    </div>
+    <hr />
+
+    <div ng-repeat="location in locations | orderBy:nameOrder">
+      <div class="row">
+        <div class="columns large-12"><input type="text" placeholder="cowork name" ng-model="location.name"></div>
+        <div class="columns large-12"><input type="text" placeholder="address" ng-model="location.address"></div>
+        <div class="columns large-12"><input type="text" placeholder="website url" ng-model="location.url"></div>
+      </div>
+      <div class="row" style="padding-left: 15px; padding-right: 15px;">
+        <input id="{{location.id}}" class="button small large-12 columns" type="button" value="update" ng-click="updateLocation(location)"><br/>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <script>
+    function query() {
+        var result = {}, keyValuePairs = location.search.slice(1).split('&');
+
+        keyValuePairs.forEach(function(keyValuePair) {
+            keyValuePair = keyValuePair.split('=');
+            result[keyValuePair[0]] = keyValuePair[1] || '';
+        });
+
+        return result;
+    }
+
+    var app = angular.module('App', []);
+
+    app.filter("citystring", function() {
+      return function(city) {
+        if(city.state) {
+          return city.city + ", " + (city.state || "(none)") + ", " + city.country;
+        } else {
+          return city.city + ", " + city.country;
+        }
+      };
+    });
+
+    app.controller("AppCtrl", function($scope, $http) {
+        var getCity = function(id) {
+          $http.get("/city?id=" + id).success(function(data) {
+            $scope.id = data.id;
+            $scope.city = data.city || "";
+            $scope.state = data.state || "";
+            $scope.country = data.country || "";
+          });
+        };
+
+        var getLocations = function(id) {
+          $http.get("/locations?id=" + id).success(function(data) {
+            $scope.locations = data;
+          });
+        };
+
+        $scope.updateCity = function () {
+          var newCity = {
+            id: $scope.id,
+            city: $scope.city,
+            state: $scope.state,
+            country: $scope.country,
+          };
+
+          $("#updateCity").html("saving...");
+
+          $http.post("/city", newCity)
+            .success(function(data) {
+                $("#updateCity").html("saved!");
+                setTimeout(function() { 
+                  $("#updateCity").html("update");
+                }, 2000);
+            });
+        };
+
+        $scope.updateLocation = function(loc) {
+          $("#" + loc.id).val("saving...");
+          $http.post("/location", loc)
+            .success(function(data) {
+              loc.lat = data.lat;
+              loc.lng = data.lng;
+              $("#" + loc.id).val("saved!");
+              setTimeout(function() { 
+                $("#" + loc.id).val("update");
+              }, 2000);
+            });
+        };
+
+        $scope.addLocation = function() {
+          $http.post("/location", { name: $scope.coworkName, cityId: $scope.id  })
+            .success(function(data) {
+              $scope.coworkName = "";
+              getLocations(query().id);
+            });
+        };
+
+        $scope.nameOrder = function(loc) {
+          return loc.name;
+        };
+
+        getCity(query().id);
+        getLocations(query().id);
+    });
+  </script>
+<% include footer %>

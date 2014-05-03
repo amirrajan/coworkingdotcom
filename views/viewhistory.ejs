@@ -1,0 +1,60 @@
+<% include header %>
+
+  <div class="row" ng-app="App" ng-controller="AppCtrl">
+    <h1>History</h1>
+    <hr />
+    <div ng-repeat="entry in history" style="margin-bottom: 10px">
+      <img class="columns large-columns-1" src="{{entry.audit.by.avatar}}" style="margin-right: 10px; width: 50px; height: 50px; padding: 3px; border: solid 1px silver;" /> {{entry.audit.by.username}}<br/>
+      <div>{{entry | audittype}}</div>
+      <div>{{entry | detailstring}}</div>
+      <hr />
+    </div>
+  </div>
+
+  <script>
+    function query() {
+        var result = {}, keyValuePairs = location.search.slice(1).split('&');
+
+        keyValuePairs.forEach(function(keyValuePair) {
+            keyValuePair = keyValuePair.split('=');
+            result[keyValuePair[0]] = keyValuePair[1] || '';
+        });
+
+        return result;
+    }
+
+    var app = angular.module('App', []);
+
+    app.filter("audittype", function() {
+      return function(entry) {
+        if(entry.audit.type == "cityentry") {
+          return "City Changed/Added";
+        } else {
+          return "Location Changed/Added";
+        }
+      };
+    });
+
+    app.filter("detailstring", function() {
+      return function(entry) {
+        if(entry.audit.type == "cityentry") {
+          return entry.details.city + ", " + (entry.details.state || "(none)") + ", " + (entry.details.country || "(none)");
+        } else {
+          return entry.details.name + ", " + (entry.details.address || "(none)") + ", " + (entry.details.url || "(none)");
+        }
+      };
+    });
+
+    app.controller("AppCtrl", function($scope, $http) {
+        var getAll = function(id) {
+          $http.get("/history").success(function(data) {
+            $scope.history = data;
+          });
+        };
+
+
+        getAll();
+    });
+  </script>
+
+<% include footer %>
