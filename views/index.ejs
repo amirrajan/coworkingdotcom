@@ -16,20 +16,28 @@
       <p>If your cowork location isn't represented, reach out to any of our <a href="#coordinators">coordinators</a> via Twitter, and they'll get the ball rolling.</p>
     </div>
 
+    <% function cityString(city) {
+        if(city.state) {
+          return city.city + ", " + (city.state || "(none)") + ", " + city.country;
+        } else {
+          return city.city + ", " + city.country;
+        }
+    }%>
+
+    <% u.each(all, function(city) {
+      u.each(city.locations, function(loc) {
+        loc.order = Math.random();
+      });
+    }); %>
+
     <div class="row">
       <div class="columns">
         <hr />
         Cities |
-        <% u.each(cities, function(city) {  %>
-          <% if(city.state) { %>
-            <a href="#<%= city.id %>_anchor">
-              <%= city.city + ", " + (city.state || "(none)") + ", " + city.country %>
-            </a> | 
-          <% } else { %>
-            <a href="#<%= city.id %>_anchor">
-              <%= city.city + ", " + city.country %>
-            </a> | 
-          <% } %>
+        <% u.each(all, function(city) {  %>
+          <a href="#<%= city.id %>_anchor">
+            <%= cityString(city) %>
+          </a> | 
         <% }); %>
         <hr />
       </div>
@@ -37,29 +45,35 @@
     <br/>
     <br/>
 
-    <div class="row"  ng-repeat="city in all" style="margin-bottom: 25px; padding-top: 5px; padding-bottom: 5px;">
-      <div class="columns large-10 medium-10 small-10">
-        <a href="#" id="{{city.id}}_anchor"> </a>
-        <span style="font-size: 25px;">{{city | citystring}}</span>
-        <div style="margin-top: 5px; margin-bottom: 5px;">
-          <a ng-show="city.coordinator" style="font-size: 15px" href="http://twitter.com/{{city.coordinator}}">Contact @{{city.coordinator}} via Twitter to add your cowork location</a>
+    <% u.each(all, function(city) {  %>
+      <div class="row" style="margin-bottom: 25px; padding-top: 5px; padding-bottom: 5px;">
+        <div class="columns large-10 medium-10 small-10">
+          <a href="#" id="<%= city.id %>_anchor"> </a>
+          <span style="font-size: 25px;"><%= cityString(city) %></span>
+          <div style="margin-top: 5px; margin-bottom: 5px;">
+            <% if(city.coordinator) { %>
+              <a style="font-size: 15px" href="http://twitter.com/<%= city.coordinator %>">Contact @<%= city.coordinator %> via Twitter to add your cowork location</a>
+            <% } %>
+          </div>
+        </div>
+        <div class="columns large-2 medium-2 hide-for-small-only">
+          <a class="button small viewmap" style="width: 100%; margin-bottom: 10px; padding: 10px; margin-right: 5px;" data-city-id="<%= city.id %>" href="#">view map</a>
+        </div>
+
+        <div class="columns large-12 small-12">
+          <hr style="margin-top: 0px" />
+        </div>
+
+        <div class="columns">
+          <% u.each(u.sortBy(city.locations, function(loc) { return loc.order; }), function(loc) {  %>
+            <div style="margin-bottom: 10px;">
+              <h4><a href="<%= loc.url %>" target="_blank"><%= loc.name %></a></h4>
+              <%= loc.address || "" %>
+            </div>
+          <% }); %>
         </div>
       </div>
-      <div class="columns large-2 medium-2 hide-for-small-only">
-        <a class="button small" ng-click="viewMap(city)" style="width: 100%; margin-bottom: 10px; padding: 10px; margin-right: 5px;" href="#">view map</a>
-      </div>
-
-      <div class="columns large-12 small-12">
-        <hr style="margin-top: 0px" />
-      </div>
-
-      <div class="columns">
-        <div style="margin-bottom: 10px;" ng-repeat="loc in city.locations | orderBy:random">
-          <h4><a href="{{loc.url}}" target="_blank">{{loc.name}}</a></h4>
-          {{loc.address}}
-        </div>
-      </div>
-    </div>
+    <% }); %>
 
     <div class="row">
       <a href="#" id="coordinators"> </a>
@@ -83,6 +97,23 @@
   </div>
 
   <script>
+    var all = <%- JSON.stringify(all) %>;
+
+    $(function() {
+      $(".viewmap").click(function() {
+        viewMap($(this).attr("data-city-id"));
+      });
+    });
+
+    function viewMap(id) {
+      var city = all[id];
+      $("#map").html('');
+      $('#mapmodal').foundation('reveal', 'open');
+      setTimeout(function() {
+        drawMap(city.locations);
+      }, 2000);
+    };
+
     function drawMap(locations) {
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -122,44 +153,11 @@
       map.fitBounds(bounds);
     }
 
-    function query() {
-        var result = {}, keyValuePairs = location.search.slice(1).split('&');
-
-        keyValuePairs.forEach(function(keyValuePair) {
-            keyValuePair = keyValuePair.split('=');
-            result[keyValuePair[0]] = keyValuePair[1] || '';
-        });
-
-        return result;
-    }
-
     var app = angular.module('App', []);
-
-    app.filter("citystring", function() {
-      return function(city) {
-        if(city.state) {
-          return city.city + ", " + (city.state || "(none)") + ", " + city.country;
-        } else {
-          return city.city + ", " + city.country;
-        }
-      };
-    });
 
     app.controller("AppCtrl", function($scope, $http) {
         $scope.random = function(entity){
-            return entity.order;
-        };
-
-        var getAll = function(id) {
-          $http.get("/all").success(function(data) {
-            _.each(data, function(city) {
-              _.each(city.locations, function(loc) {
-                loc.order = Math.random();
-              });
-            });
-
-            $scope.all = data;
-          });
+          return entity.order;
         };
 
         var getCoordinators = function() {
@@ -172,15 +170,6 @@
           });
         };
 
-        $scope.viewMap = function(city) {
-          $("#map").html('');
-          $('#mapmodal').foundation('reveal', 'open');
-          setTimeout(function() {
-            drawMap(city.locations);
-          }, 2000);
-        };
-
-        getAll();
         getCoordinators();
     });
   </script>

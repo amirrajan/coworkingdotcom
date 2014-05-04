@@ -21,12 +21,28 @@ var isMasterAccount = function(user) {
   return user.username == env.twitterMasterAccount;
 };
 
+var allCities = function(callback) {
+  cities.getall(function(err, allCities) {
+    locations.getall(function(err, allLocations) {
+      _.each(allCities, function(city) {
+        city.locations = [];
+      });
+
+      _.each(allLocations, function(loc) {
+        allCities[loc.cityId].locations.push(loc);
+      });
+
+      callback(allCities);
+    });
+  });
+};
+
 ///////
 //views
 ///////
 definition.get['/'] = function(req, res) {
-  cities.getall(function(err, data) {
-    res.render('index', { u: _, user: req.user, cities: data });
+  allCities(function(all) {
+    res.render('index', { u: _, user: req.user, all: all });
   });
 };
 
@@ -74,18 +90,8 @@ definition.get['/accessdenied'] = function(req, res) {
 //api gets
 ///////////
 definition.get['/all'] = function (req, res) {
-  cities.getall(function(err, allCities) {
-    locations.getall(function(err, allLocations) {
-      _.each(allCities, function(city) {
-        city.locations = [];
-      });
-
-      _.each(allLocations, function(loc) {
-        allCities[loc.cityId].locations.push(loc);
-      });
-
-      res.json(allCities);
-    });
+  allCities(function(all) {
+    res.json(all);
   });
 };
 
