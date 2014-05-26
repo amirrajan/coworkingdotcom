@@ -18,7 +18,7 @@ var definition = {
 var isMasterAccount = function(user) {
   if(!user) return false;
 
-  return user.username == env.twitterMasterAccount;
+  return user.username.toLowerCase() == env.twitterMasterAccount.toLowerCase();
 };
 
 var allCities = function(callback) {

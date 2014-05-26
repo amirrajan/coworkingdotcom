@@ -23,7 +23,7 @@ var error = function() {
 var hasAccess = function(user) {
   if(!user) return false;
 
-  if(user.username == env.twitterMasterAccount) return true;
+  if(user.username.toLowerCase() == env.twitterMasterAccount.toLowerCase()) return true;
 
   return _.any(accessList.users, function(u) {
     return u.screen_name == user.username;
