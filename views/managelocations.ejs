@@ -4,10 +4,11 @@
     <hr />
     <% if(isMasterAccount) { %>
       <div class="row">
-        <div class="columns large-6"><input type="text" placeholder="city" ng-model="city"></div>
-        <div class="columns large-6"><input type="text" placeholder="state" ng-model="state"></div>
-        <div class="columns large-6"><input type="text" placeholder="country" ng-model="country"></div>
+        <div class="columns large-4"><input type="text" placeholder="city" ng-model="city"></div>
+        <div class="columns large-4"><input type="text" placeholder="state" ng-model="state"></div>
+        <div class="columns large-4"><input type="text" placeholder="country" ng-model="country"></div>
         <div class="columns large-6"><input type="text" placeholder="coordinator" ng-model="coordinator"></div>
+        <div class="columns large-6"><input type="text" placeholder="tiny name (eg: dallas)" ng-model="tinyname"></div>
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
         <a id="updateCity" href="#" class="button small large-12 columns" ng-click="updateCity()">update city</a>
@@ -69,6 +70,7 @@
             $scope.state = data.state || "";
             $scope.country = data.country || "";
             $scope.coordinator = data.coordinator || "";
+            $scope.tinyname = data.tinyname || "";
           });
         };
 
@@ -85,6 +87,7 @@
             state: $scope.state,
             country: $scope.country,
             coordinator: $scope.coordinator,
+            tinyname: $scope.tinyname
           };
 
           $("#updateCity").html("saving...");
@@ -105,6 +108,7 @@
             state: $scope.state,
             country: $scope.country,
             coordinator: $scope.coordinator,
+            tinyname: $scope.tinyname
           };
 
           $("#updateCity").html("deleting...");

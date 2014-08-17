@@ -35,7 +35,7 @@
         <hr />
         Cities |
         <% u.each(all, function(city) {  %>
-          <a href="#<%= city.id %>_anchor">
+          <a href="#<%= city.tinyname || city.id %>_anchor">
             <%= cityString(city) %>
           </a> | 
         <% }); %>
@@ -48,7 +48,7 @@
     <% u.each(all, function(city) {  %>
       <div class="row" style="margin-bottom: 25px; padding-top: 5px; padding-bottom: 5px;">
         <div class="columns large-10 medium-10 small-10">
-          <a href="#" id="<%= city.id %>_anchor"> </a>
+          <a href="#" id="<%= city.tinyname || city.id %>_anchor"> </a>
           <span style="font-size: 25px;"><%= cityString(city) %></span>
           <div style="margin-top: 5px; margin-bottom: 5px;">
             <% if(city.coordinator) { %>

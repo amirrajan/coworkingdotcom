@@ -4,10 +4,11 @@
     <hr />
     <% if(isMasterAccount) { %>
       <div class="row">
-        <div class="columns large-6"><input type="text" placeholder="city" ng-model="city"></div>
-        <div class="columns large-6"><input type="text" placeholder="state" ng-model="state"></div>
-        <div class="columns large-6"><input type="text" placeholder="country" ng-model="country"></div>
+        <div class="columns large-4"><input type="text" placeholder="city" ng-model="city"></div>
+        <div class="columns large-4"><input type="text" placeholder="state" ng-model="state"></div>
+        <div class="columns large-4"><input type="text" placeholder="country" ng-model="country"></div>
         <div class="columns large-6"><input type="text" placeholder="coordinator" ng-model="coordinator"></div>
+        <div class="columns large-6"><input type="text" placeholder="tiny name (eg: dallas)" ng-model="tinyname"></div>
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
         <a href="#" class="button small large-12 columns" ng-click="addCity()">add city</a>
@@ -27,9 +28,9 @@
     app.filter("citystring", function() {
       return function(city) {
         if(city.state) {
-          return city.city + ", " + (city.state || "(none)") + ", " + city.country;
+          return city.city + ", " + (city.state || "(none)") + ", " + city.country + " (" + (city.tinyname || "no tiny name") + ")";
         } else {
-          return city.city + ", " + city.country;
+          return city.city + ", " + city.country + " (" + (city.tinyname || "no tiny name") + ")";
         }
       };
     });
@@ -47,12 +48,14 @@
             city: $scope.city,
             state: $scope.state,
             country: $scope.country,
-            coordinator: $scope.coordinator
+            coordinator: $scope.coordinator,
+            coordinator: $scope.tinyname
           }).success(function(data) {
             $scope.city = "";
             $scope.state = "";
             $scope.country = "";
             $scope.coordinator = "";
+            $scope.tinyname = "";
             getCities();
           });
         };
