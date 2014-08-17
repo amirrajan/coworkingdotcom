@@ -24,26 +24,40 @@
         }
     }%>
 
+    <% function cityLink(city) {
+         if(city.tinyname) {
+           return "/cities/" + city.tinyname;
+         } else {
+           return "#" + city.id + "_anchor";
+         }
+    }%>
+
     <% u.each(all, function(city) {
       u.each(city.locations, function(loc) {
         loc.order = Math.random();
       });
     }); %>
 
-    <div class="row">
-      <div class="columns">
-        <hr />
-        Cities |
-        <% u.each(all, function(city) {  %>
-          <a href="#<%= city.tinyname || city.id %>_anchor">
-            <%= cityString(city) %>
-          </a> | 
-        <% }); %>
-        <hr />
+    <% if(u.keys(all).length > 1) { %>
+      <div class="row">
+        <div class="columns">
+          <hr />
+          Cities |
+          <% u.each(all, function(city) {  %>
+            <a href="<%= cityLink(city) %>">
+              <%= cityString(city) %>
+            </a> | 
+          <% }); %>
+          <hr />
+        </div>
       </div>
-    </div>
-    <br/>
-    <br/>
+      <br/>
+      <br/>
+    <% } else { %>
+      <hr />
+      <br/>
+      <br/>
+    <% } %>
 
     <% u.each(all, function(city) {  %>
       <div class="row" style="margin-bottom: 25px; padding-top: 5px; padding-bottom: 5px;">
