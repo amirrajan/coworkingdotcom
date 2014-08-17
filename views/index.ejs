@@ -91,7 +91,7 @@
 
     <div class="row">
       <a href="#" id="coordinators"> </a>
-      <h2>Our Coordinators</h2>
+      <h2 id="coordinatorsectiontitle">Our Coordinators</h2>
       <hr/>
     </div>
 
@@ -127,6 +127,14 @@
         drawMap(city.locations);
       }, 2000);
     };
+
+    function setCoordinatorTitle(coordinators) {
+      if(coordinators.length > 1) {
+        $("#coordinatorsectiontitle").html('Our Coordinators');
+      } else {
+        $("#coordinatorsectiontitle").html('Coordinator For This City');
+      }
+    }
 
     function drawMap(locations) {
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -191,6 +199,8 @@
                 filteredCoordinators.push(u);
               }
             });
+
+            setCoordinatorTitle(filteredCoordinators);
 
             $scope.coordinators = filteredCoordinators;
           });
