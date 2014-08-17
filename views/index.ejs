@@ -180,7 +180,19 @@
               u.order = Math.random();
             });
 
-            $scope.coordinators = data.users;
+            var coordinatorsOfCities = { };
+            _.each(all, function(a) {
+              coordinatorsOfCities[a.coordinator] = a;
+            });
+
+            var filteredCoordinators = [];
+            _.each(data.users, function(u) {
+              if(coordinatorsOfCities[u.screen_name]) {
+                filteredCoordinators.push(u);
+              }
+            });
+
+            $scope.coordinators = filteredCoordinators;
           });
         };
 
