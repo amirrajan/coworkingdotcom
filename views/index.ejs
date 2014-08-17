@@ -182,12 +182,12 @@
 
             var coordinatorsOfCities = { };
             _.each(all, function(a) {
-              coordinatorsOfCities[a.coordinator] = a;
+              coordinatorsOfCities[(a.coordinator || "").toLowerCase()] = a;
             });
 
             var filteredCoordinators = [];
             _.each(data.users, function(u) {
-              if(coordinatorsOfCities[u.screen_name]) {
+              if(coordinatorsOfCities[u.screen_name.toLowerCase()]) {
                 filteredCoordinators.push(u);
               }
             });
