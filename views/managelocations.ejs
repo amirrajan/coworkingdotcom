@@ -80,8 +80,8 @@
           });
         };
 
-        $scope.updateCity = function () {
-          var newCity = {
+        var cityFromScope = function() {
+          return {
             id: $scope.id,
             city: $scope.city,
             state: $scope.state,
@@ -89,10 +89,12 @@
             coordinator: $scope.coordinator,
             tinyname: $scope.tinyname
           };
+        };
 
+        $scope.updateCity = function () {
           $("#updateCity").html("saving...");
 
-          $http.post("/city", newCity)
+          $http.post("/city", cityFromScope())
             .success(function(data) {
                 $("#updateCity").html("saved!");
                 setTimeout(function() { 
@@ -102,18 +104,9 @@
         };
 
         $scope.deleteCity = function() {
-          var newCity = {
-            id: $scope.id,
-            city: $scope.city,
-            state: $scope.state,
-            country: $scope.country,
-            coordinator: $scope.coordinator,
-            tinyname: $scope.tinyname
-          };
-
           $("#updateCity").html("deleting...");
 
-          $http.post("/deletecity", newCity)
+          $http.post("/deletecity", cityFromScope())
             .success(function(data) {
                 window.location = "/managecities";
             });
