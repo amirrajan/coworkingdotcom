@@ -16,7 +16,7 @@
       <hr />
     <% } %>
     <div ng-repeat="city in cities" style="font-size: 25px">
-      <a class="button small" style="float: right" href="/managelocations?id={{city.id}}">edit</a> 
+      <a class="button small" style="float: right" href="/managelocations?id={{city.id}}">edit</a>
       {{ city | citystring }}<br/>
       <small style="color: gray">{{ city.id }}</small><br/>
       <hr>
@@ -49,7 +49,7 @@
             state: $scope.state,
             country: $scope.country,
             coordinator: $scope.coordinator,
-            coordinator: $scope.tinyname
+            tinyname: $scope.tinyname
           }).success(function(data) {
             $scope.city = "";
             $scope.state = "";
