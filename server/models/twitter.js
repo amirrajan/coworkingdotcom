@@ -30,7 +30,7 @@ function Twitter(config) {
 
 //here are your extension points, you can add method to this class
 //by simple add them to this map. You call any http get method
-//defined here: https://dev.twitter.com/docs/api/1.1 
+//defined here: https://dev.twitter.com/docs/api/1.1
 var mappings = [
   { name: "following", url: '/friends/list.json' },
 ];
@@ -45,7 +45,7 @@ _.each(mappings, function(map) {
   };
 });
 
-//the show method takes in a single parameter (the twitter url), and doesn't 
+//the show method takes in a single parameter (the twitter url), and doesn't
 //fall into the common signature of the methods defined above (which is why
 //it's explicitly defined)
 Twitter.prototype.show = function(tweet_url, error, success) {
@@ -107,7 +107,9 @@ Twitter.prototype.doGetRequest = function (url, error, success) {
     this.oauth.get(url, this.accessToken, this.accessTokenSecret, function (err, body, response) {
         console.log('GET [%s]', url);
         if (!err && response.statusCode == 200) {
-            success(JSON.parse(body));
+            var parsedJson = JSON.parse(body)
+            success(parsedJson);
+            console.log(body);
         } else {
             error(err, response, body);
         }
