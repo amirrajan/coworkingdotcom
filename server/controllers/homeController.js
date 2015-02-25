@@ -8,7 +8,7 @@ var get = { };
 var post = { };
 var uuid = require('node-uuid');
 var env = process.env;
-var definition = { 
+var definition = {
   get: { },
   post: { },
   authget: { },
@@ -55,7 +55,7 @@ definition.authget['/managecities'] = function(req, res) {
   res.render('managecities', {
     u: _,
     user: req.user,
-    isMasterAccount: isMasterAccount(req.user) 
+    isMasterAccount: isMasterAccount(req.user)
   });
 };
 
@@ -117,7 +117,7 @@ definition.get['/city'] = function (req, res) {
 
 definition.get['/history'] = function(req, res) {
   history.getall(function(err, allHistory) {
-    res.json(_.sortBy(allHistory || { }, function(h) { 
+    res.json(_.sortBy(allHistory || { }, function(h) {
       return -1 * new Date(h.audit.date).getTime();
     }));
   });
