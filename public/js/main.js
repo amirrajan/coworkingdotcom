@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 	//google map custom marker icon - .png fallback for IE11
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
-	var marker_url = ( is_internetExplorer11 ) ? 'img/logo.png' : 'img/marker.svg';
+	var marker_url = ( is_internetExplorer11 ) ? '/img/logo.png' : '/img/marker.svg';
 
 	//define the basic color of your map, plus a value for saturation and brightness
 	var	main_color = '#2a3a4d',
@@ -244,7 +244,7 @@ $(document).ready(function(){
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map,
         title: locations[i][0],
-        icon : 'img/marker.svg',
+        icon : '/img/marker.svg',
         html: contentString,
         animation: google.maps.Animation.DROP
       });
