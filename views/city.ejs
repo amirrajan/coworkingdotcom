@@ -19,7 +19,7 @@
 	<div class="top-side">
 		<div class="side-padding">
 			<div class="logo">
-				<img src="img/logo.png">
+				<img src="/img/logo.png">
 			</div>
 			<div class="back">
 				<a href="#"><i class="fa fa-arrow-left"></i>Go Back</a>
@@ -48,7 +48,7 @@
               <% u.each(u.sortBy(city.locations, function(loc) { return loc.order; }), function(loc) {  %>
 				        <li>
                   <a href="<%= loc.url %>" target="_blank"><%= loc.name %></a>
-				        	<img src="img/marker-white.svg"><span><%= loc.address || "" %></span>
+				        	<img src="/img/marker-white.svg"><span><%= loc.address || "" %></span>
 				        </li>
               <% }); %>
             <% }); %>
