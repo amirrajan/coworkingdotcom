@@ -102,20 +102,6 @@ definition.get['/cities/:tinyname'] = function(req, res) {
       }
     });
 
-    res.render('index', { u: _, user: req.user, all: filteredHash });
-  });
-};
-
-definition.get['/c/:tinyname'] = function(req, res) {
-  allCities(function(all) {
-    var filteredHash = { }
-
-    _.each(all, function(k) {
-      if(k.tinyname == req.params.tinyname) {
-        filteredHash[k.id] = k;
-      }
-    });
-
     res.render('city', { u: _, user: req.user, all: filteredHash });
   });
 };
