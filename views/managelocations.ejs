@@ -16,7 +16,7 @@
       </div>
       <hr />
     <% } %>
-    
+
     <div class="row">
       <div class="columns large-12"><input type="text" placeholder="cowork name" ng-model="coworkName"></div>
     </div>
@@ -29,7 +29,7 @@
       <div class="row">
         <div class="columns large-12"><input type="text" placeholder="cowork name" ng-model="location.name"></div>
         <div class="columns large-12"><input type="text" placeholder="address" ng-model="location.address"></div>
-        <div class="columns large-12"><input type="text" placeholder="website url" ng-model="location.url"></div>
+        <div class="columns large-12"><input type="text" placeholder="website url (include http://)" ng-model="location.url"></div>
       </div>
       <div class="row" style="padding-left: 15px; padding-right: 15px;">
         <input id="{{location.id}}" class="button small large-12 columns" type="button" value="update location" ng-click="updateLocation(location)"><br/>
@@ -97,7 +97,7 @@
           $http.post("/city", cityFromScope())
             .success(function(data) {
                 $("#updateCity").html("saved!");
-                setTimeout(function() { 
+                setTimeout(function() {
                   $("#updateCity").html("update");
                 }, 2000);
             });
@@ -119,7 +119,7 @@
               loc.lat = data.lat;
               loc.lng = data.lng;
               $("#" + loc.id).val("saved!");
-              setTimeout(function() { 
+              setTimeout(function() {
                 $("#" + loc.id).val("update");
               }, 2000);
             });

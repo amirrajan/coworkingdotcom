@@ -46,6 +46,12 @@ definition.get['/'] = function(req, res) {
   });
 };
 
+definition.get['/n'] = function(req, res) {
+  allCities(function(all) {
+    res.render('old_index', { u: _, user: req.user, all: all });
+  });
+};
+
 definition.get['/logout'] = function(req, res){
   req.logout();
   res.redirect('/');

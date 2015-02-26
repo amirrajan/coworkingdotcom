@@ -41,6 +41,15 @@
          return (v.country || "") + (v.state || "") + (v.city || "");
        });
 
+       var citiesByCountry = { };
+
+       u.each(flatCities, function (v) {
+         citiesByCountry[v.country] = citiesByCountry[v.country] || [ ];
+         citiesByCountry[v.country].push(v);
+       });
+
+       console.log(citiesByCountry);
+
        %>
 
     <% if(u.keys(all).length > 1) { %>

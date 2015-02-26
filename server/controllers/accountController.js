@@ -1,6 +1,6 @@
 var passport = require('passport')
 var env = process.env;
-var definition = { 
+var definition = {
   get: { },
   post: { }
 };
