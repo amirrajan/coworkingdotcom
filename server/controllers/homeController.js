@@ -42,7 +42,11 @@ var allCities = function(callback) {
 ///////
 definition.get['/'] = function(req, res) {
   allCities(function(all) {
-    res.render('index', { u: _, user: req.user, all: all });
+    res.render('index', {
+      u: _, user: req.user,
+      all: all,
+      masterAccount: env.twitterMasterAccount
+    });
   });
 };
 
