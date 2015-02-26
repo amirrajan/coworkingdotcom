@@ -76,7 +76,7 @@
         var value = $(element).val();
 
         $(".cities > li").each(function() {
-            if ($(this).text().search(value) > -1) {
+            if ($(this).text().toLowerCase().search(value.toLowerCase()) > -1) {
             	console.log($(this).text());
                 $(this).show();
             }
