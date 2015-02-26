@@ -1,9 +1,10 @@
 <html>
 <head>
-<title>Dallas - Coworking Around the Globe</title>
+<titleCoworking Around the Globe</title>
 <link href="css/styles.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="//use.typekit.net/uam2aqu.js"></script>
+<script src="/underscore/underscore.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 
 
@@ -26,7 +27,7 @@
 			<div class="city">
         <% if(u.keys(all).length == 1) { %>
             <% u.each(all, function(city) {  %>
-				      <h1><%= city.city %></h1>
+				      <h1 id="city-displayed" data-city-id="<%= city.id %>"><%= city.city %></h1>
             <% }); %>
         <% } %>
 			</div>
@@ -57,7 +58,6 @@
 	</div>
 </aside>
 
-
 <!-- Map Section! -->
 <section id="main">
 	<section id="cd-google-map">
@@ -70,6 +70,8 @@
 </section>
 
 <script language="javascript" type="text/javascript">
+    var all = <%- JSON.stringify(all) %>;
+
     function filter(element) {
         var value = $(element).val();
 

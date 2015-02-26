@@ -1,8 +1,16 @@
-$(document).ready(function(){
+function generateLocations() {
+  var locations = all[$("#city-displayed").attr('data-city-id')].locations;
 
+  return _.map(locations, function(loc) {
+    return ["<h4>" + loc.name + "</h4>", loc.lat, loc.lng, loc.address]
+  });
+}
+
+$(document).ready(function(){
 	var s = $('.top-side').height();
 	var t = $('body').height();
 	var resize = t - 400;
+  var cityId
 
 	$('.city-side').css('height', resize);
 
@@ -193,11 +201,7 @@ $(document).ready(function(){
 		}
 	];
 
-	var locations = [
-      ['<h4>Fort Work</h4>', 32.782182, -96.797600,'211 N Ervay Street<br>Dallas TX, 75201'],
-      ['<h4>Regus Dallas</h4>', 32.821810, -96.789215, '4514 Cole Avenue #600<br>Dallas, TX 75205'],
-      ['<h4>Common Desk</h4>', 32.783818, -96.781278, '2919 Commerce St<br>Dallas, TX 75226']
-    ];
+	var locations = generateLocations();
 
 	//set google map options
 	var map_options = {
@@ -214,8 +218,6 @@ $(document).ready(function(){
     }
     //inizialize the map
 	var map = new google.maps.Map(document.getElementById('google-container'), map_options);
-
-
 
 	var infowindow = null;
 
