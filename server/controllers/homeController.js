@@ -100,20 +100,6 @@ definition.get['/cities/:tinyname'] = function(req, res) {
   });
 };
 
-definition.get['/:tinyname'] = function(req, res) {
-  allCities(function(all) {
-    var filteredHash = { }
-
-    _.each(all, function(k) {
-      if(k.tinyname == req.params.tinyname) {
-        filteredHash[k.id] = k;
-      }
-    });
-
-    res.render('city', { u: _, user: req.user, all: filteredHash });
-  });
-};
-
 ///////////
 //api gets
 ///////////
@@ -245,5 +231,18 @@ definition.authpost['/deletelocation'] = function (req, res) {
   });
 };
 
+definition.get['/:tinyname'] = function(req, res) {
+  allCities(function(all) {
+    var filteredHash = { }
+
+    _.each(all, function(k) {
+      if(k.tinyname == req.params.tinyname) {
+        filteredHash[k.id] = k;
+      }
+    });
+
+    res.render('city', { u: _, user: req.user, all: filteredHash });
+  });
+};
 
 module.exports.definition = definition;
