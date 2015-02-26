@@ -47,7 +47,7 @@
             <% u.each(all, function(city) {  %>
               <% u.each(u.sortBy(city.locations, function(loc) { return loc.order; }), function(loc) {  %>
 				        <li>
-                  <a href="http://<%= loc.url %>" target="_blank"><%= loc.name %></a>
+                  <a href="<%= loc.url %>" target="_blank"><%= loc.name %></a>
 				        	<img src="img/marker-white.svg"><span><%= loc.address || "" %></span>
 				        </li>
               <% }); %>
