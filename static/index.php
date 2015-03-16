@@ -34,11 +34,36 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<!-- <hr> -->
 	</div>
 	<div class="city-side">
 		<div class="side-padding">
 			<ul class="cities">
+				<li>
+					<img src="img/marker-white.svg">
+					<a href="#">Fort Work</a>
+					<span>211 N Ervay Street 9th Floor, Dallas, TX 75201</span>
+				</li>
+				<li>
+					<a href="#">Regus Dallas</a>
+					<img src="img/marker-white.svg"><span>4514 Cole Avenue #600, Dallas, TX 75205</span>
+				</li>
+				<li>
+					<a href="#">Comminshare</a>
+					<img src="img/marker-white.svg"><span>2919 Commerce St Dallas, TX 75226</span>
+				</li>
+				<li>
+					<a href="#">Fort Work</a>
+					<img src="img/marker-white.svg"><span>211 N Ervay Street 9th Floor, Dallas, TX 75201</span>
+				</li>
+				<li>
+					<a href="#">Regus Dallas</a>
+					<img src="img/marker-white.svg"><span>4514 Cole Avenue #600, Dallas, TX 75205</span>
+				</li>
+				<li>
+					<a href="#">Comminshare</a>
+					<img src="img/marker-white.svg"><span>2919 Commerce St Dallas, TX 75226</span>
+				</li>
 				<li>
 					<a href="#">Fort Work</a>
 					<img src="img/marker-white.svg"><span>211 N Ervay Street 9th Floor, Dallas, TX 75201</span>
@@ -63,8 +88,8 @@
 	<!-- #google-container will contain the map  -->
 	<div id="google-container"></div>
 	<!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
-	<div id="cd-zoom-in"></div>
-	<div id="cd-zoom-out"></div>
+	<div id="cd-zoom-in"><i class="fa fa-plus"></i></div>
+	<div id="cd-zoom-out"><i class="fa fa-minus"></i></div>
 </section>
 </section>
 

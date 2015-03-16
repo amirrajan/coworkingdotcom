@@ -16,22 +16,22 @@ $(document).ready(function(){
 	//google map custom marker icon - .png fallback for IE11
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 	var marker_url = ( is_internetExplorer11 ) ? 'img/logo.png' : 'img/marker.svg';
-
+		
 	//define the basic color of your map, plus a value for saturation and brightness
 	var	main_color = '#2a3a4d',
 		saturation_value= -20,
 		brightness_value= 5;
 
 	//we define here the style of the map
-	var style= [
+	var style= [ 
 		{
 			//set saturation for the labels on the map
 			elementType: "labels",
 			stylers: [
 				{saturation: saturation_value}
 			]
-		},
-	    {	//poi stands for point of interest - don't show these lables on the map
+		},  
+	    {	//poi stands for point of interest - don't show these lables on the map 
 			featureType: "poi",
 			elementType: "labels",
 			stylers: [
@@ -45,22 +45,22 @@ $(document).ready(function(){
 	        stylers: [
 	            {visibility: "off"}
 	        ]
-	    },
-		{
+	    }, 
+		{ 	
 			//don't show local road lables on the map
-			featureType: "road.local",
-			elementType: "labels.icon",
+			featureType: "road.local", 
+			elementType: "labels.icon", 
 			stylers: [
-				{visibility: "off"}
-			]
+				{visibility: "off"} 
+			] 
 		},
-		{
+		{ 
 			//don't show arterial road lables on the map
-			featureType: "road.arterial",
-			elementType: "labels.icon",
+			featureType: "road.arterial", 
+			elementType: "labels.icon", 
 			stylers: [
 				{visibility: "off"}
-			]
+			] 
 		},
 		{
 			//don't show road lables on the map
@@ -69,25 +69,25 @@ $(document).ready(function(){
 			stylers: [
 				{visibility: "off"}
 			]
-		},
+		}, 
 		//style different elements on the map
-		{
-			featureType: "transit",
-			elementType: "geometry.fill",
+		{ 
+			featureType: "transit", 
+			elementType: "geometry.fill", 
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
-		},
+		}, 
 		{
 			featureType: "poi",
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -96,8 +96,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -106,8 +106,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -116,8 +116,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -126,8 +126,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -136,8 +136,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -146,8 +146,8 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -155,19 +155,19 @@ $(document).ready(function(){
 			featureType: "landscape",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
-
+			
 		},
 		{
 			featureType: "road",
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		},
@@ -176,23 +176,23 @@ $(document).ready(function(){
 			elementType: "geometry.fill",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
-		},
+		}, 
 		{
 			featureType: "water",
 			elementType: "geometry",
 			stylers: [
 				{ hue: main_color },
-				{ visibility: "on" },
-				{ lightness: brightness_value },
+				{ visibility: "on" }, 
+				{ lightness: brightness_value }, 
 				{ saturation: saturation_value }
 			]
 		}
 	];
-
+		
 	//set google map options
 	var map_options = {
       	center: new google.maps.LatLng(latitude, longitude),
@@ -221,7 +221,7 @@ $(document).ready(function(){
 	var infowindow = new google.maps.InfoWindow({
 		content: contentString
 	});
-	//add a custom marker to the map
+	//add a custom marker to the map				
 	var marker = new google.maps.Marker({
 	  	position: new google.maps.LatLng(latitude, longitude),
 	    map: map,
@@ -235,7 +235,7 @@ $(document).ready(function(){
 
 	//add custom buttons for the zoom-in/zoom-out on the map
 	function CustomZoomControl(controlDiv, map) {
-		//grap the zoom elements from the DOM and insert them in the map
+		//grap the zoom elements from the DOM and insert them in the map 
 	  	var controlUIzoomIn= document.getElementById('cd-zoom-in'),
 	  		controlUIzoomOut= document.getElementById('cd-zoom-out');
 	  	controlDiv.appendChild(controlUIzoomIn);

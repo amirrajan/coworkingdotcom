@@ -8,17 +8,63 @@
 
 html {
 	margin: 0;
-		padding: 0;
+	padding: 0;
 	body {
 		background: @secondary;
 		margin: 0;
 		padding: 0;
 		height: 100vh;
 		overflow: hidden;
+		.top-side {
+			img {
+				width: 50%;
+			}
+		}
 		p,a,h1,h2,h3,h4,h5,h6,span,input {
 			font-family: "brandon-grotesque",sans-serif;
 			font-style: normal;
 			font-weight: 400;
+		}
+		#cd-zoom-in {
+			height: 32px;
+			width: 32px;
+			cursor: pointer;
+			margin-left: 10px;
+			background-color: @secondary;
+			line-height: 32px;
+			text-align: center;
+			margin-top: 15px;
+			i {
+				color: #fff;
+				opacity: .75;
+				font-size: 20px;
+				transition: all .2s ease-in-out;
+				line-height: 32px;
+				&:hover {
+					opacity: 1;
+					color: @highlight;
+				}
+			}
+		}
+		#cd-zoom-out {
+			height: 32px;
+			width: 32px;
+			cursor: pointer;
+			margin-left: 10px;
+			background-color: @secondary;
+			line-height: 32px;
+			text-align: center;
+			i {
+				color: #fff;
+				opacity: .75;
+				line-height: 32px;
+				font-size: 20px;
+				transition: all .2s ease-in-out;
+				&:hover {
+					opacity: 1;
+					color: @highlight;
+				}
+			}
 		}
 	}
 	a {
@@ -32,7 +78,7 @@ html {
 		background: @secondary;
 		height: 100vh;
 		width: 480px;
-		overflow: hidden;
+		overflow: scroll;
 		float: left;
 		.side-padding {
 			padding: 30px 60px;
@@ -51,11 +97,11 @@ html {
 				font-weight: 400;
 				text-transform: uppercase;
 				color: #fff;
-				font-size: 4em;
+				font-size: 3em;
 				margin-top: 0px;
 				line-height: 100%;
 				letter-spacing: .1em;
-				margin-bottom: 30px;
+				margin-bottom: 15px;
 			}
 		}
 		.search {
@@ -117,7 +163,7 @@ html {
 			}
 		}
 		.city-side {
-			overflow: scroll !important;
+			// overflow: scroll !important;
 		}
 	}
 	#main {
