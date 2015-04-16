@@ -13,6 +13,71 @@ html body {
 html body .top-side img {
   width: 50%;
 }
+html body #coordinator {
+  position: fixed;
+  left: 480px;
+  top: 0px;
+  padding: 16px 20px;
+  background: rgba(42, 58, 77, 0.75);
+  z-index: 9999;
+}
+html body #coordinator .left {
+  float: left;
+  text-align: center;
+  margin-right: 15px;
+}
+html body #coordinator .left .border-wrapper {
+  background: #32e4c5;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #32e4c5 0%, #6c86c7 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #32e4c5), color-stop(100%, #6c86c7));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #32e4c5 0%, #6c86c7 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #32e4c5 0%, #6c86c7 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #32e4c5 0%, #6c86c7 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #32e4c5 0%, #6c86c7 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#32e4c5', endColorstr='#6c86c7', GradientType=0);
+  /* IE6-9 */
+  width: 77px;
+  height: 77px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+html body #coordinator .left img {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin-top: 1px;
+}
+html body #coordinator .left a {
+  text-decoration: underline;
+  opacity: .6;
+  transition: all 0.2s ease-in-out;
+  font-size: 13px;
+}
+html body #coordinator .left a:hover {
+  opacity: 1;
+}
+html body #coordinator .right {
+  float: left;
+}
+html body #coordinator .right h4 {
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  margin-top: 12px;
+}
+html body #coordinator .right a {
+  color: #32e4c5;
+}
 html body p,
 html body a,
 html body h1,
@@ -36,6 +101,8 @@ html body #cd-zoom-in {
   line-height: 32px;
   text-align: center;
   margin-top: 15px;
+  position: fixed;
+  right: 15px;
 }
 html body #cd-zoom-in i {
   color: #fff;
@@ -56,6 +123,9 @@ html body #cd-zoom-out {
   background-color: #2a3a4d;
   line-height: 32px;
   text-align: center;
+  position: fixed;
+  right: 15px;
+  margin-top: 50px;
 }
 html body #cd-zoom-out i {
   color: #fff;

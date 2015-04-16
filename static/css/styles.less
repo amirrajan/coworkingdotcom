@@ -20,6 +20,63 @@ html {
 				width: 50%;
 			}
 		}
+		#coordinator {
+			position: fixed;
+			left: 480px;
+			top: 0px;
+			padding: 16px 20px;
+			background: rgba(42,58,77,.75);
+			z-index: 9999;
+			.left {
+				float: left;
+				text-align: center;
+				margin-right: 15px;
+				.border-wrapper {
+					background: rgb(50,228,197); /* Old browsers */
+					background: -moz-linear-gradient(top,  rgba(50,228,197,1) 0%, rgba(108,134,199,1) 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(50,228,197,1)), color-stop(100%,rgba(108,134,199,1))); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top,  rgba(50,228,197,1) 0%,rgba(108,134,199,1) 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top,  rgba(50,228,197,1) 0%,rgba(108,134,199,1) 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top,  rgba(50,228,197,1) 0%,rgba(108,134,199,1) 100%); /* IE10+ */
+					background: linear-gradient(to bottom,  rgba(50,228,197,1) 0%,rgba(108,134,199,1) 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32e4c5', endColorstr='#6c86c7',GradientType=0 ); /* IE6-9 */
+					width: 77px;
+					height: 77px;
+					overflow: hidden;
+					text-align: center;
+					border-radius: 50%;
+					margin: 0 auto;
+				}
+				img {
+					border-radius: 50%;
+					width: 75px;
+					height: 75px;
+					margin-top: 1px;
+				}
+				a {
+					text-decoration: underline;
+					opacity: .6;
+					transition: all .2s ease-in-out;
+					font-size: 13px;
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+			.right {
+				float: left;
+				h4 {
+					font-weight: bold;
+					color: #fff;
+					text-transform: uppercase;
+					margin-bottom: 0px;
+					margin-top: 12px;
+				}
+				a {
+					color: @highlight;
+				}
+			}
+		}
 		p,a,h1,h2,h3,h4,h5,h6,span,input {
 			font-family: "brandon-grotesque",sans-serif;
 			font-style: normal;
@@ -34,6 +91,8 @@ html {
 			line-height: 32px;
 			text-align: center;
 			margin-top: 15px;
+			position: fixed;
+			right: 15px;
 			i {
 				color: #fff;
 				opacity: .75;
@@ -54,6 +113,9 @@ html {
 			background-color: @secondary;
 			line-height: 32px;
 			text-align: center;
+			position: fixed;
+			right: 15px;
+			margin-top: 50px;
 			i {
 				color: #fff;
 				opacity: .75;
