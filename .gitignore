@@ -4,3 +4,4 @@
 .env~
 .userpassword
 node_modules
+*.DS_Store
