@@ -85,30 +85,30 @@
 <!-- Map Section! -->
 <section id="main">
 	<section id="cd-google-map">
-	<!-- #google-container will contain the map  -->
-	<div id="google-container"></div>
-	<!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
-	<div id="cd-zoom-in"><i class="fa fa-plus"></i></div>
-	<div id="cd-zoom-out"><i class="fa fa-minus"></i></div>
-	<div id="coordinator">
-		<div class="left">
-			<div class="border-wrapper"><img src="http://placehold.it/100x100"></div>
-			<div class="listed">
-				<a href="#">Get My Space Listed</a>
-			</div>
-		</div>
-		<div class="right">
-			<h4>City Coordinator</h4>
-			<a href="#" class="box-link">Oren Salomon<br>@iOren</a>
-		</div>
-	</div>
-</section>
+	  <!-- #google-container will contain the map  -->
+	  <div id="google-container"></div>
+	  <!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
+	  <div id="cd-zoom-in"><i class="fa fa-plus"></i></div>
+	  <div id="cd-zoom-out"><i class="fa fa-minus"></i></div>
+	  <div id="coordinator">
+		  <div class="left">
+			  <div class="border-wrapper"><img src="http://placehold.it/100x100"></div>
+			  <div class="listed">
+				  <a href="#">Get My Space Listed</a>
+			  </div>
+		  </div>
+		  <div class="right">
+			  <h4>City Coordinator</h4>
+			  <a href="#" class="box-link">Oren Salomon<br>@iOren</a>
+		  </div>
+	  </div>
+  </section>
 </section>
 
 <script language="javascript" type="text/javascript">
     function filter(element) {
         var value = $(element).val();
-        
+
         $(".cities > li").each(function() {
             if ($(this).text().search(value) > -1) {
             	console.log($(this).text());
