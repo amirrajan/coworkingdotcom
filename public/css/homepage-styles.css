@@ -14,7 +14,7 @@ html body {
 html body .top-side img {
   width: 50%;
 }
-html body #coordinator {
+#coordinator {
   position: fixed;
   left: 480px;
   top: 0px;
@@ -22,12 +22,12 @@ html body #coordinator {
   background: rgba(42, 58, 77, 0.75);
   z-index: 9999;
 }
-html body #coordinator .left {
+#coordinator .left {
   float: left;
   text-align: center;
   margin-right: 15px;
 }
-html body #coordinator .left .border-wrapper {
+#coordinator .left .border-wrapper {
   background: #32e4c5;
   /* Old browsers */
   background: -moz-linear-gradient(top, #32e4c5 0%, #6c86c7 100%);
@@ -51,32 +51,32 @@ html body #coordinator .left .border-wrapper {
   border-radius: 50%;
   margin: 0 auto;
 }
-html body #coordinator .left img {
+#coordinator .left img {
   border-radius: 50%;
   width: 75px;
   height: 75px;
   margin-top: 1px;
 }
-html body #coordinator .left a {
+#coordinator .left a {
   text-decoration: underline;
   opacity: .6;
   transition: all 0.2s ease-in-out;
   font-size: 13px;
 }
-html body #coordinator .left a:hover {
+#coordinator .left a:hover {
   opacity: 1;
 }
-html body #coordinator .right {
+#coordinator .right {
   float: left;
 }
-html body #coordinator .right h4 {
+#coordinator .right h4 {
   font-weight: bold;
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 0px;
   margin-top: 12px;
 }
-html body #coordinator .right a {
+#coordinator .right a {
   color: #32e4c5;
 }
 html body p,
