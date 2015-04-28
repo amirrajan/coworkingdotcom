@@ -58,6 +58,8 @@
 	</div>
 </aside>
 
+<% if(u.keys(all).length == 1) { %>
+    <% u.each(all, function(city) {  %>
 <!-- Map Section! -->
 <section id="main">
 	<section id="cd-google-map">
@@ -66,20 +68,20 @@
 	  <!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
 	  <div id="cd-zoom-in"><i class="fa fa-plus"></i></div>
 	  <div id="cd-zoom-out"><i class="fa fa-minus"></i></div>
-	  <div id="coordinator">
+	  <div id="coordinator" style="display: none; max-width: 25%">
 		  <div class="left">
-			  <div class="border-wrapper"><img src="http://placehold.it/100x100"></div>
-			  <div class="listed">
-				  <a href="#">Get My Space Listed</a>
-			  </div>
+			  <div class="border-wrapper"><img id="coordinator-image" src="http://placehold.it/100x100"></div>
 		  </div>
 		  <div class="right">
 			  <h4>City Coordinator</h4>
-			  <a href="#" class="box-link">Oren Salomon<br>@iOren</a>
+			  <a id="coordinator-link" href="http://twitter.com/<%= city.coordinator %>" class="box-link">Contact Oren Salomon (@<%= city.coordinator %>) on Twitter to get your space listed.</a>
 		  </div>
 	  </div>
   </section>
 </section>
+    <script>getCoordinator('<%= city.coordinator %>')</script>
+    <% }); %>
+<% } %>
 
 <script language="javascript" type="text/javascript">
     var all = <%- JSON.stringify(all) %>;

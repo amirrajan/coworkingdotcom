@@ -15,6 +15,10 @@ var definition = {
   authpost: { }
 };
 
+var Twitter = require('../models/twitter').Twitter;
+var twitter = new Twitter(process.env);
+var accessList = [];
+
 var isMasterAccount = function(user) {
   if(!user) return false;
 

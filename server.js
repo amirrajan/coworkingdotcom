@@ -63,5 +63,3 @@ refreshAccessList();
 setInterval(function() { refreshAccessList(); }, 5000 * 60); //refresh access list every minute
 
 app.listen(process.env.PORT);
-
-
