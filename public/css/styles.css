@@ -67,6 +67,7 @@ html body #coordinator .left a:hover {
 }
 html body #coordinator .right {
   float: left;
+  width:220px;
 }
 html body #coordinator .right h4 {
   font-weight: bold;
