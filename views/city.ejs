@@ -45,7 +45,7 @@
 			<ul class="cities">
         <% if(u.keys(all).length == 1) { %>
             <% u.each(all, function(city) {  %>
-              <% u.each(u.sortBy(city.locations, function(loc) { return loc.order; }), function(loc) {  %>
+              <% u.each(u.sortBy(city.locations, function(loc) { return Math.random(); }), function(loc) {  %>
 				        <li>
                   <a href="<%= loc.url %>" target="_blank"><%= loc.name %></a>
 				        	<img src="/img/marker-white.svg"><span><%= loc.address || "" %></span>
