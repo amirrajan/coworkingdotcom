@@ -4,6 +4,10 @@ $(document).ready(function(){
 	var t = $('body').height();
 	var resize = t - 400;
 
+	$('#menu-toggle').click(function() {
+		$('body').toggleClass('active');
+	});
+
 	$('.city-side').css('height', resize);
 
 	window.onresize = resizeCities;
