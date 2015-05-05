@@ -229,10 +229,11 @@ html aside ul {
 html aside ul li {
   color: #fff;
   margin-bottom: 30px;
+  font-size: .8em;
 }
 html aside ul li a {
   color: #32e4c5;
-  font-size: 1.6em;
+  font-size: 1.2em;
   text-transform: uppercase;
   display: block;
 }

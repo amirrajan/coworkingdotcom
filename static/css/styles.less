@@ -20,6 +20,9 @@ html {
 				width: 50%;
 			}
 		}
+		#menu-toggle {
+			display: none;
+		}
 		#coordinator {
 			position: fixed;
 			left: 480px;
@@ -234,6 +237,143 @@ html {
 		height: 100vh;
 		#cd-google-map, #google-container {
 			height: 100vh;
+		}
+	}
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+	html {
+		body {
+			&.active {
+				aside {
+					width: 75%;
+				}
+				#coordinator {
+					left: 78%;
+					top: 15px;
+					transition: all .2s ease-in-out;
+					opacity: .1;
+				}
+			}
+			aside {
+				width: 0px;
+				transition: all .2s ease-in-out;
+			}
+			#menu-toggle {
+				display: block;
+				position: fixed;
+				left: 15px;
+				top: 15px;
+				z-index: 9999;
+				font-size: 2rem;
+				background: @secondary;
+				color: #fff;
+				padding: 15px;
+			}
+			#coordinator {
+				left: 15px;
+				bottom: 15px;
+				top: auto;
+			}
+		}
+	}
+}
+
+@media all and (min-width: 0px) and (max-width: 767px) {
+	html {
+		body {
+			&.active {
+				aside {
+					width: 100%;
+				}
+				#coordinator {
+					left: 78%;
+					top: 15px;
+					transition: all .2s ease-in-out;
+					opacity: 0;
+				}
+			}
+			aside {
+				width: 0px;
+				transition: all .2s ease-in-out;
+				.side-padding {
+					padding: 15px 30px;
+				}
+				ul {
+					li {
+						font-size: 12px;
+					}
+				}
+			}
+			.logo {
+				text-align: center;
+			}
+			#menu-toggle {
+				display: block;
+				position: fixed;
+				left: 15px;
+				top: 15px;
+				z-index: 9999;
+				font-size: 2rem;
+				background: @secondary;
+				color: #fff;
+				padding: 15px;
+			}
+			#coordinator {
+				left: 15px;
+				bottom: 15px;
+				top: auto;
+			}
+		}
+	}
+}
+
+@media all and (min-width: 0px) and (max-width: 320px) {
+	html {
+		body {
+			&.active {
+				aside {
+					width: 100%;
+				}
+				#coordinator {
+					left: 78%;
+					top: 15px;
+					transition: all .2s ease-in-out;
+					opacity: 0;
+				}
+			}
+			aside {
+				width: 0px;
+				transition: all .2s ease-in-out;
+				.side-padding {
+					padding: 15px 30px;
+				}
+				ul {
+					li {
+						font-size: 12px;
+					}
+				}
+			}
+			.logo {
+				text-align: center;
+			}
+			#menu-toggle {
+				display: block;
+				position: fixed;
+				left: 15px;
+				top: 15px;
+				z-index: 9999;
+				font-size: 2rem;
+				background: @secondary;
+				color: #fff;
+				padding: 15px;
+			}
+			#coordinator {
+				left: 0px;
+				bottom: 0px;
+				top: auto;
+				width: 100%;
+			}
 		}
 	}
 }
