@@ -129,7 +129,7 @@
     <div class="state" style="margin-bottom: 10px">
       <h4></h4>
       <ul>
-      <% u.each(citiesByCountry[key], function(city) { %>
+      <% u.each(u.sortBy(citiesByCountry[key], function(c) { return cityString(c); }), function(city) { %>
         <li><a href="<%= cityLink(city) %>"><%= cityString(city) %></a></li>
       <% }); %>
       </ul>
