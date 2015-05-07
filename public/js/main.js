@@ -33,6 +33,10 @@ $(document).ready(function(){
 	var resize = t - 400;
   var cityId
 
+  	$('#menu-toggle').click(function() {
+		$('body').toggleClass('active');
+	});
+
 	$('.city-side').css('height', resize);
 
 	window.onresize = resizeCities;
