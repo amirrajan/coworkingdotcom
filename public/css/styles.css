@@ -252,6 +252,119 @@ html #main #google-container {
   height: 100vh;
 }
 
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  html body.active aside {
+    width: 75%;
+  }
+  html body.active #coordinator {
+    left: 78%;
+    top: 15px;
+    transition: all 0.2s ease-in-out;
+    opacity: .1;
+  }
+  html body aside {
+    width: 0px;
+    transition: all 0.2s ease-in-out;
+  }
+  html body #menu-toggle {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 9999;
+    font-size: 2rem;
+    background: #2a3a4d;
+    color: #fff;
+    padding: 15px;
+  }
+  html body #coordinator {
+    left: 15px;
+    bottom: 15px;
+    top: auto;
+  }
+}
+@media all and (min-width: 0px) and (max-width: 767px) {
+  html body.active aside {
+    width: 100%;
+  }
+  html body.active #coordinator {
+    left: 78%;
+    top: 15px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+  }
+  html body aside {
+    width: 0px;
+    transition: all 0.2s ease-in-out;
+  }
+  html body aside .side-padding {
+    padding: 15px 30px;
+  }
+  html body aside ul li {
+    font-size: 12px;
+  }
+  html body .logo {
+    text-align: center;
+  }
+  html body #menu-toggle {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 9999;
+    font-size: 2rem;
+    background: #2a3a4d;
+    color: #fff;
+    padding: 15px;
+  }
+  html body #coordinator {
+    left: 15px;
+    bottom: 15px;
+    top: auto;
+  }
+}
+@media all and (min-width: 0px) and (max-width: 320px) {
+  html body.active aside {
+    width: 100%;
+  }
+  html body.active #coordinator {
+    left: 78%;
+    top: 15px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+  }
+  html body aside {
+    width: 0px;
+    transition: all 0.2s ease-in-out;
+  }
+  html body aside .side-padding {
+    padding: 15px 30px;
+  }
+  html body aside ul li {
+    font-size: 12px;
+  }
+  html body .logo {
+    text-align: center;
+  }
+  html body #menu-toggle {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 9999;
+    font-size: 2rem;
+    background: #2a3a4d;
+    color: #fff;
+    padding: 15px;
+  }
+  html body #coordinator {
+    left: 0px;
+    bottom: 0px;
+    top: auto;
+    width: 100%;
+  }
+}
+
 @media (max-width: 375px) {
   #cities-aside { display: none; }
 }
