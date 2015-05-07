@@ -382,7 +382,7 @@ html #main #google-container {
 
 @media all and (min-width: 0px) and (max-width: 767px) {
   html body .home-logo img {
-    width: 100%;
-    max-width: 100%;
+    width: 75%;
+    max-width: 75%;
   }
 }
