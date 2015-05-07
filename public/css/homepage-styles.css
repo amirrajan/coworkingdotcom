@@ -346,7 +346,7 @@ html #homeMap #google-container {
   margin: 0 auto;
 }
 .state {
-  width: 23%;
+  width: 50%;
   float: left;
 }
 .state h4 {
