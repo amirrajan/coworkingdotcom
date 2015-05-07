@@ -287,6 +287,10 @@ html #main #google-container {
   html body.active aside {
     width: 100% !important;
   }
+  html body .home-logo img {
+    width: 100%;
+    max-width: 100%;
+  }
   html body.active #cities-aside {
     display: block;
   }
