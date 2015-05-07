@@ -379,3 +379,10 @@ html #main #cd-google-map,
 html #main #google-container {
   height: 100vh;
 }
+
+@media all and (min-width: 0px) and (max-width: 767px) {
+  html body .home-logo img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
