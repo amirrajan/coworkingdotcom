@@ -325,9 +325,10 @@ html #main #google-container {
     padding: 15px;
   }
   html body #coordinator {
-    left: 15px;
-    bottom: 15px;
+    left: 0px;
+    bottom: 0px;
     top: auto;
+    width: 100%;
   }
 }
 @media all and (min-width: 0px) and (max-width: 320px) {
