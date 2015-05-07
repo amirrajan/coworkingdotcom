@@ -251,3 +251,7 @@ html #main #cd-google-map,
 html #main #google-container {
   height: 100vh;
 }
+
+@media (max-width: 375px) {
+  #cities-aside { display: none; }
+}
