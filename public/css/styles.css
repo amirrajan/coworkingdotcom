@@ -285,7 +285,14 @@ html #main #google-container {
 }
 @media all and (min-width: 0px) and (max-width: 767px) {
   html body.active aside {
-    width: 100%;
+    width: 100% !important;
+  }
+  html body.active #cities-aside {
+    display: block;
+  }
+  html body.active #menu-toggle {
+    top: 5px !important;
+    background: transparent;
   }
   html body.active #coordinator {
     left: 78%;
@@ -332,6 +339,10 @@ html #main #google-container {
     top: 15px;
     transition: all 0.2s ease-in-out;
     opacity: 0;
+  }
+  html body.active #menu-toggle {
+    top: 5px !important;
+    background: transparent;
   }
   html body aside {
     width: 0px;

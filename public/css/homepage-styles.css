@@ -13,6 +13,9 @@ html body {
 html body .top-side img {
   width: 50%;
 }
+html body #menu-toggle {
+  display: none;
+}
 #coordinator {
   position: fixed;
   left: 480px;
