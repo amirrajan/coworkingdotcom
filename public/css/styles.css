@@ -300,6 +300,7 @@ html #main #google-container {
   }
   html body.active #coordinator {
     left: 78%;
+    display: none;
     top: 15px;
     transition: all 0.2s ease-in-out;
     opacity: 0;
@@ -333,6 +334,16 @@ html #main #google-container {
     bottom: 0px;
     top: auto;
     width: 100%;
+  }
+  html body aside .city h1 {
+    font-size: 2.2em;
+  }
+  html body.active #cd-zoom-in, html body.active #cd-zoom-out {
+    display: none;
+  }
+  html body .location a {
+    color: #333;
+    font-size: 2em;
   }
 }
 @media all and (min-width: 0px) and (max-width: 320px) {

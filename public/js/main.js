@@ -2,7 +2,7 @@ function generateLocations() {
   var locations = all[$("#city-displayed").attr('data-city-id')].locations;
 
   return _.map(locations, function(loc) {
-    return ["<h4>" + loc.name + "</h4>", loc.lat, loc.lng, loc.address]
+    return ["<h4 class='location'><a href='" + loc.url + "' target='_blank'>" + loc.name + "</h4></a>", loc.lat, loc.lng, loc.address];
   });
 }
 
@@ -282,23 +282,13 @@ $(document).ready(function(){
 
     markers.push(marker);
 
-    // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    //   return function() {
-    //     infowindow.setContent(contentString);
-    //     infowindow.open(map, marker);
-    //   }
-    // })(marker, i));
+	windows.push(infowindow);
 
-
-
-
-		windows.push(infowindow);
-
-		google.maps.event.addListener(marker, 'click', function() {
-			// infowindow.open(map,marker);
-			infowindow.setContent(this.html);
-			infowindow.open(map, this);
-		});
+	google.maps.event.addListener(marker, 'click', function() {
+		// infowindow.open(map,marker);
+		infowindow.setContent(this.html);
+		infowindow.open(map, this);
+	});
 
   }
 
