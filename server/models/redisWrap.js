@@ -1,8 +1,10 @@
 var redis = require("redis");
 var client = null;
 
-if(process.env.REDISTOGO_URL) { //heroku 
-  client = require('redis-url').connect(process.env.REDISTOGO_URL);
+if(process.env.REDISTOGO_URL) { //heroku
+  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  var client = require("redis").createClient(rtg.port, rtg.hostname);
+  client.auth(rtg.auth.split(":")[1]);
 } else {
   client = redis.createClient();
 }
@@ -39,7 +41,7 @@ module.exports.hgetall = function(collection) {
       for(var i in obj) {
         obj[i] = JSON.parse(obj[i]);
       }
-      
+
       if(callback) callback(err, obj);
     });
   }
