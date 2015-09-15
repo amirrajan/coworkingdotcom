@@ -17,7 +17,7 @@ var definition = {
 
 var Twitter = require('../models/twitter').Twitter;
 var twitter = new Twitter(process.env);
-var accessList = [];
+var accessList = { };
 
 var error = function() {
   return function (err, body) {
