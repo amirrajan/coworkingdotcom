@@ -28,6 +28,7 @@ html body #coordinator .left {
   float: left;
   text-align: center;
   margin-right: 15px;
+  margin-top: 10px;
 }
 html body #coordinator .left .border-wrapper {
   background: #32e4c5;
