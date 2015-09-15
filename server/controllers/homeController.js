@@ -126,7 +126,8 @@ definition.get['/cities/:tinyname'] = function(req, res) {
       res.render('city', {
           u: _, user: req.user,
           all: filteredHash,
-          coordinators: coordinators
+          coordinators: coordinators,
+          accessList: accessList
       });
   });
 };
