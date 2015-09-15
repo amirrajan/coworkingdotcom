@@ -19,6 +19,13 @@ var Twitter = require('../models/twitter').Twitter;
 var twitter = new Twitter(process.env);
 var accessList = [];
 
+var error = function() {
+  return function (err, body) {
+    console.log("error: ", err);
+  };
+};
+
+
 var isMasterAccount = function(user) {
   if(!user) return false;
 
@@ -102,15 +109,23 @@ definition.get['/accessdenied'] = function(req, res) {
 
 definition.get['/cities/:tinyname'] = function(req, res) {
   allCities(function(all) {
-    var filteredHash = { }
+      var filteredHash = { };
 
-    _.each(all, function(k) {
-      if(k.tinyname == req.params.tinyname) {
-        filteredHash[k.id] = k;
-      }
-    });
+      _.each(all, function(k) {
+          if(k.tinyname == req.params.tinyname) {
+              filteredHash[k.id] = k;
+          }
+      });
 
-    res.render('city', { u: _, user: req.user, all: filteredHash });
+      var coordinators = { };
+
+      _.each(accessList, function(a) { coordinators[a.screen_name] = a; });
+
+      res.render('city', {
+          u: _, user: req.user,
+          all: filteredHash,
+          coordinators: coordinators
+      });
   });
 };
 
@@ -245,5 +260,14 @@ definition.authpost['/deletelocation'] = function (req, res) {
   });
 };
 
+var refreshAccessList = function() {
+  twitter.following({ count: 5000, screen_name: env.twitterMasterAccount }, error(), function(following) {
+    accessList = following;
+  });
+};
+
+refreshAccessList();
+
+setInterval(function() { refreshAccessList(); }, 5000 * 60); //refresh access list every minute
 
 module.exports.definition = definition;
