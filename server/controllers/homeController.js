@@ -119,15 +119,14 @@ definition.get['/cities/:tinyname'] = function(req, res) {
 
       var coordinators = { };
 
-      _.each(accessList, function(a) {
+      _.each(accessList.users, function(a) {
           coordinators[a.screen_name] = a;
       });
 
       res.render('city', {
           u: _, user: req.user,
           all: filteredHash,
-          coordinators: coordinators,
-          accessList: accessList
+          coordinators: coordinators
       });
   });
 };
