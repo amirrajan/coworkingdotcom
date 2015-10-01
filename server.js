@@ -53,7 +53,7 @@ app.attach(accountController.definition);
 app.get('/coordinators', function(req, res) { res.json(accessList); });
 
 var refreshAccessList = function() {
-  twitter.following({ count: 5000, screen_name: env.twitterMasterAccount }, error(), function(following) {
+  twitter.following({ count: 200, screen_name: env.twitterMasterAccount }, error(), function(following) {
     accessList = following;
   });
 };

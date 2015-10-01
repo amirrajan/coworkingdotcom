@@ -263,7 +263,7 @@ definition.authpost['/deletelocation'] = function (req, res) {
 };
 
 var refreshAccessList = function() {
-  twitter.following({ count: 5000, screen_name: env.twitterMasterAccount }, error(), function(following) {
+  twitter.following({ count: 200, screen_name: env.twitterMasterAccount }, error(), function(following) {
     accessList = following;
   });
 };
